@@ -5,7 +5,9 @@
                 <% for (let post of posts) {%>
                     <li class="list-group-item">
                         <div class="lead">
-                            <%= post.title %>
+                            <a href="/posts/<%= post._id %>">
+                                <%= post.title %>
+                            </a>
                         </div>
                         <a href="<%= post.url %>" target="_blank">
                             <%= post.url %>
