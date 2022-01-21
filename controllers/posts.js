@@ -18,21 +18,41 @@ module.exports = (app) => {
     });
 
     // SHOW ALL POSTS
-    app.get('/posts/index', (req, res) => {
-        Post.find({}).lean()
-            .then((posts) => res.render('posts/index', { posts }))
-            .catch((err) => {
-                console.log(err.message);
-            })
-    })
+
+    app.get('/posts/index', async (req, res) => {
+        try {
+            const posts = await Post.find({}).lean();
+            return res.render('posts/index', { posts });
+        } catch (err) {
+            console.log(err.message);
+        }
+    });
+
+    // app.get('/posts/index', (req, res) => {
+    //     Post.find({}).lean()
+    //         .then((posts) => res.render('posts/index', { posts }))
+    //         .catch((err) => {
+    //             console.log(err.message);
+    //         })
+    // })
 
     // LOOK UP ONE POST
-    app.get('/posts/:id', (req, res) => {
-        Post.findById(req.params.id).lean()
-            .then((post) => res.render('posts/show', { post }))
-            .catch((err) => {
-                console.log(err.message);
-            });
+
+    app.get('/posts/:id', async (req, res) => {
+        try {
+            const post = await Post.findById(req.params.id).lean();
+            return res.render('posts/show', { post });
+        } catch (err) {
+            console.log(err.message);
+        }
     });
+
+    // app.get('/posts/:id', (req, res) => {
+    //     Post.findById(req.params.id).lean()
+    //         .then((post) => res.render('posts/show', { post }))
+    //         .catch((err) => {
+    //             console.log(err.message);
+    //         });
+    // });
 
 };

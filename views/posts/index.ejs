@@ -11,7 +11,14 @@
                         </div>
                         <a href="<%= post.url %>" target="_blank">
                             <%= post.url %>
-                        </a>
+                        </a><br>
+                        <b>Created</b> : <%=
+                            `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}`
+                            %><br>
+                            <b>Updated</b> : <%=
+                                `${post.updatedAt.getDate()}/${post.updatedAt.getMonth()}/${post.updatedAt.getFullYear()}`
+                                %>
+                                </p>
                     </li>
                     <% }%>
             </ul>
