@@ -35,3 +35,7 @@ app.get('/page1', (req, res) => {
 app.listen(port, () => {
     console.log(`Reddit app listening at http://localhost:${port}`)
 })
+
+
+
+module.exports = app;
