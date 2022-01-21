@@ -7,5 +7,10 @@
             <p>
                 <%= post.summary %>
             </p>
+            <p><b>Created</b> : <%= post.createdAt %><br>
+                    <b>Updated</b> : <%= post.updatedAt %>
+                        <%= `${post.updatedAt.getTime()} -
+                            ${post.updatedAt.getDate()}/${post.updatedAt.getMonth()}/${post.updatedAt.getFullYear()}` %>
+            </p>
         </div>
     </div>
