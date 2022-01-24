@@ -7,6 +7,7 @@ module.exports = (app) => {
         res.render('posts/new')
     })
 
+
     // CREATE
     app.post('/posts/new', (req, res) => {
         // INSTANTIATE INSTANCE OF POST MODEL
@@ -16,6 +17,7 @@ module.exports = (app) => {
         // SAVE INSTANCE OF POST MODEL TO DB AND REDIRECT TO THE ROOT
         post.save(() => res.redirect('../posts/index'));
     });
+
 
     // SHOW ALL POSTS
 
@@ -28,31 +30,28 @@ module.exports = (app) => {
         }
     });
 
-    // app.get('/posts/index', (req, res) => {
-    //     Post.find({}).lean()
-    //         .then((posts) => res.render('posts/index', { posts }))
-    //         .catch((err) => {
-    //             console.log(err.message);
-    //         })
-    // })
 
     // LOOK UP ONE POST
 
     app.get('/posts/:id', async (req, res) => {
         try {
-            const post = await Post.findById(req.params.id).lean();
+            const post = await Post.findById(req.params.id).lean().populate('comments');
             return res.render('posts/show', { post });
         } catch (err) {
             console.log(err.message);
         }
     });
 
-    // app.get('/posts/:id', (req, res) => {
-    //     Post.findById(req.params.id).lean()
-    //         .then((post) => res.render('posts/show', { post }))
-    //         .catch((err) => {
-    //             console.log(err.message);
-    //         });
-    // });
+
+    // SUBREDDIT
+    app.get('/n/:subreddit', async (req, res) => {
+        try {
+            const posts = await Post.find({ subreddit: req.params.subreddit }).lean();
+            return res.render('posts/index', { posts });
+        } catch (err) {
+            console.log(err.message);
+        }
+    });
 
 };
+
