@@ -1,9 +1,13 @@
+require('dotenv').config();
+
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const path = require('path');
 const ejsMate = require('ejs-mate');
 // Set db
 require('./data/reddit-db');
 const app = express();
+app.use(cookieParser());
 const port = 3000
 
 
@@ -18,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 
+require('./controllers/auth')(app);
 require('./controllers/posts')(app);
 require('./controllers/comments')(app);
 
