@@ -6,7 +6,9 @@ module.exports = (app) => {
 
     // SIGN UP FORM
     app.get('/signup', (req, res) => {
-        res.render('posts/signup')
+        const currentUser = req.user;
+
+        res.render('posts/signup', { currentUser })
     })
 
 
@@ -37,7 +39,9 @@ module.exports = (app) => {
 
     // LOGIN FORM
     app.get('/login', (req, res) => {
-        res.render('posts/login')
+        const currentUser = req.user;
+
+        res.render('posts/login', { currentUser })
     });
 
     // LOGIN

@@ -14,18 +14,20 @@
             </p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-            <form action="/posts/<%= post._id %>/comments" method="post">
-                <textarea class='form-control' name="content" placeholder="Comment"></textarea>
-                <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Save</button>
+    <% if(currentUser){ %>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <form action="/posts/<%= post._id %>/comments" method="post">
+                    <textarea class='form-control' name="content" placeholder="Comment"></textarea>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <% } %>
+            <% for (let comment of post.comments) {%>
+                <div>
+                    <%= comment.content %>
                 </div>
-            </form>
-        </div>
-    </div>
-    <% for (let comment of post.comments) {%>
-        <div>
-            <%= comment.content %>
-        </div>
-        <% }%>
+                <% }%>
