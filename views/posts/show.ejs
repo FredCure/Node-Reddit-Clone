@@ -32,6 +32,6 @@
             <% for (let comment of post.comments) {%>
                 <div>
                     <%= comment.content %> <b>by:</b>
-                        <%= comment.author %>
+                        <%= comment.author.username %>
                 </div>
                 <% }%>
