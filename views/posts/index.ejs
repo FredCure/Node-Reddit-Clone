@@ -9,6 +9,10 @@
                                 <%= post.title %>
                             </a>
                         </div>
+                        <div><small>
+                                <p>by: <%= post.author.username %>
+                                </p>
+                            </small></div>
                         <a href="<%= post.url %>" target="_blank">
                             <%= post.url %>
                         </a><br>

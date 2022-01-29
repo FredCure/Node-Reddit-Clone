@@ -4,14 +4,17 @@
             <a href="<%= post.url %>" class="lead">
                 <%= post.title %>
             </a>
-            <p>
-                <%= post.summary %>
-            </p>
-            <p><b>Created</b> : <%= post.createdAt %><br>
-                    <b>Updated</b> : <%= post.updatedAt %>
-                        <%= `${post.updatedAt.getTime()} -
-                            ${post.updatedAt.getDate()}/${post.updatedAt.getMonth()}/${post.updatedAt.getFullYear()}` %>
-            </p>
+            <b>by:</b>
+            <%= post.author.username %>
+                <p>
+                    <%= post.summary %>
+                </p>
+                <p><b>Created</b> : <%= post.createdAt %><br>
+                        <b>Updated</b> : <%= post.updatedAt %>
+                            <%= `${post.updatedAt.getTime()} -
+                                ${post.updatedAt.getDate()}/${post.updatedAt.getMonth()}/${post.updatedAt.getFullYear()}`
+                                %>
+                </p>
         </div>
     </div>
     <% if(currentUser){ %>
@@ -28,6 +31,7 @@
         <% } %>
             <% for (let comment of post.comments) {%>
                 <div>
-                    <%= comment.content %>
+                    <%= comment.content %> <b>by:</b>
+                        <%= comment.author %>
                 </div>
                 <% }%>
